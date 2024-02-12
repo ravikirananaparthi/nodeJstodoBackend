@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewares/errorHandling.js";
 
+
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -56,8 +57,8 @@ export const logout = (req, res) => {
     .status(200)
     .cookie("token", "", {
       expires: new Date(Date.now()),
-      sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
-      secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
+      sameSite:  "none",
+      secure: true,
     })
     .json({
       success: true,
